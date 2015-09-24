@@ -1,3 +1,4 @@
+console.log("map display working")
 // var map = new ol.Map({
 //   target: 'map',
 //   layers: [
