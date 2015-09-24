@@ -6,6 +6,7 @@ console.log("algolia script");
 //   };
 
     function searchCallback(success, content) {
+    	console.log(JSON.stringify(content));
       $('#users').empty();
 
       for (var i = 0; i < content.hits.length; i++) {
