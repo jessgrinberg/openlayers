@@ -1,16 +1,14 @@
 console.log("algolia script");
 
-
-// function searchCallback(success, content) {
-//     console.log(JSON.stringify(content));
-//   };
-
     function searchCallback(success, content) {
     	console.log(JSON.stringify(content));
       $('#users').empty();
 
       for (var i = 0; i < content.hits.length; i++) {
-        $('#users').append('<li>' + content.hits[i].brandID + " , " +content.hits[i].objectID  + " ," +content.hits[i]._geoloc.lat  + " , " +content.hits[i]._geoloc.lng + '</li>');
+        $('#users').append('<li>' + "brand ID:"+ content.hits[i].brandID + " , "  + 
+        	"Object ID:"+content.hits[i].objectID  + " , " +
+        	  "Geo Loc: "+content.hits[i]._geoloc.lat  + " , " +content.hits[i]._geoloc.lng +
+        	   '</li>');
       }
     };
 
