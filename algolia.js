@@ -14,7 +14,8 @@ console.log("algolia script");
 
   $(document).ready(function() {
     var algolia = new AlgoliaSearch('E4MMGYJF7T', 'd0ec88bf3074f5c26730541a7888d84a');
-    var index = algolia.initIndex('test_NAME');
+    //var index = algolia.initIndex('test_NAME');
+    var index = algolia.initIndex('test_FILE');
 
     $("input").keyup(function() {
       index.search($("input").val(), searchCallback, {
