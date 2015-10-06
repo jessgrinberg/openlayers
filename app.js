@@ -26,8 +26,9 @@ var map = new ol.Map({
     vectorLayer
   ],
   view: new ol.View({
-    center: ol.proj.fromLonLat([103.835471, 1.303371]),
-    zoom: 6
+    center: ol.proj.transform([0, 0], 'EPSG:4326', 'EPSG:3857'),
+    //center: ol.proj.fromLonLat([103.835471, 1.303371]),
+    zoom: 2
   }),
   target: 'map'
 });
@@ -47,6 +48,7 @@ var map = new ol.Map({
 
 function addFeatures(lat, lon) {
     var i, geom, feature, features = [];
+
     geom = new ol.geom.Circle(
       ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'), 10000
     );
@@ -59,10 +61,20 @@ function addFeatures(lat, lon) {
 
 var iconStyle = new ol.style.Style({
   image: new ol.style.Icon({
-    anchor: [lon, lat],
+    // anchor: [0.5, 46],
     src: 'marker.svg'
   })
 });
+
+
+var vectorSource = new ol.source.Vector({
+  features: [iconFeature]
+});
+
+var vectorLayer = new ol.layer.Vector({
+  source: vectorSource
+});
+
 
 $('#add').on('click', function(){
   addFeatures(1.303371, 103.835471);
