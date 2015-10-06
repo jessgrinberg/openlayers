@@ -45,27 +45,41 @@ var map = new ol.Map({
 // });
 
 
-function addFeatures() {
-  var i, lat, lon, geom, feature, features = [];
-    for(i=0; i< 10; i++) {
-      lat = 1.303371;
-      lon = 103.835471;
-      geom = new ol.geom.Circle(
-      ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'), 
-        10000
-      );
-      feature = new ol.Feature(geom);
-      features.push(feature);
-    }    
-  vectorSource.addFeatures(features);
+function addFeatures(lat, lon) {
+    var i, geom, feature, features = [];
+    geom = new ol.geom.Circle(
+      ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'), 10000
+    );
+    feature = new ol.Feature(geom);
+    features.push(feature);
+    vectorSource.addFeatures(features);
     return features;
 }
 
+
+var iconStyle = new ol.style.Style({
+  image: new ol.style.Icon({
+    anchor: [lon, lat],
+    src: 'marker.svg'
+  })
+});
+
 $('#add').on('click', function(){
-  addFeatures();
+  addFeatures(1.303371, 103.835471);
 });
 
 
 
 // var gucci = map.setCenter(1.303371,103.835471)
+
+// var markers = new OpenLayers.Layer.Markers( "Markers" );
+// map.addLayer(markers);
+// marker = new OpenLayers.Marker(new OpenLayers.LonLat(90,10));
+// marker.setOpacity(0.2);
+// marker.events.register('mousedown', marker, function(evt) { alert(this.icon.url); OpenLayers.Event.stop(evt); });
+// markers.addMarker(marker); 
+// map.addControl(new OpenLayers.Control.LayerSwitcher());
+// map.zoomToMaxExtent();
+
+
 

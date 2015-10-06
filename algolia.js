@@ -9,6 +9,7 @@ console.log("algolia script");
         	"Object ID:"+content.hits[i].objectID  + " , " +
         	  "Geo Loc: "+content.hits[i]._geoloc.lat  + " , " +content.hits[i]._geoloc.lng +
         	   '</li>');
+        dsds = addFeatures(content.hits[i]._geoloc.lat, content.hits[i]._geoloc.lng);
       }
     };
 
@@ -19,9 +20,11 @@ console.log("algolia script");
 
     $("input").keyup(function() {
       index.search($("input").val(), searchCallback, {
-        hitsPerPage: 10,
+        hitsPerPage: 1000,
         facets: '*'
       });
     }).focus();
   });
+
+//facet filter on brandID
 
